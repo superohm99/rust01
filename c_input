@@ -1,0 +1,27 @@
+
+#include <unistd.h>
+#include <stdio.h>
+
+int	c_input(char *str)
+{
+	int	i;
+	int	j;
+	int	c1;
+	int	c2;
+
+	c1 = 0;
+	c2 = 0;
+	i = 0;
+	while (str[i] != '\0')
+	{
+		j = i % 2;
+		if (str[i] >= '1' && str[i] <= '4' && j == 0)
+			c1++;
+		else if (str[i] == ' ' && j == 1)
+			c2++;
+		i++;
+	}
+	if (c1 != 16 || c2 != 15)
+		return (0);
+	return (1);
+}
