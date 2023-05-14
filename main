@@ -1,0 +1,44 @@
+#include <unistd.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+int	c_input(char *str);
+int	*ft_view(char *str);
+
+int	main(int argc, char **argv)
+{
+	int	tab[4][4];
+	int *view;
+
+	if (c_input(argv[1]) == 0)
+		return (0);
+	view = ft_view(argv[1]);
+	printf(" %c", view[15]);
+
+}
+
+int	*ft_view(char *str)
+{
+	int	i;
+	int	j;
+	int	*tmp;
+	int	*a;
+
+	tmp = (int*) malloc(16 * sizeof(int));
+	i = 0;
+	j = 0;
+	while(i < 16)
+	{
+		tmp[i] = 0;
+		i++;
+	}
+	i = 0;
+	while (i <= 31)
+	{
+		tmp[i] = str[j];
+		i++;
+		j += 2;
+	}	
+	return (tmp);
+	free(tmp);
+}
