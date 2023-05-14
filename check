@@ -1,0 +1,148 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tsongsri <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/14 20:41:08 by tsongsri          #+#    #+#             */
+/*   Updated: 2023/05/14 20:41:10 by tsongsri         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+#include<stdio.h>
+int check_int(int txt[4][4], int pos, int high)
+{
+    int i;
+    
+    i = -1;
+    while(++i < (pos / 4))
+    {
+        if(txt[i][pos % 4] == high)
+        {
+            return (0);
+        }
+    }
+    i = -1;
+    while(++i < (pos % 4))
+    {
+        if(txt[pos / 4][i] == high)
+        {
+            return (0);
+        }
+    }
+    return (1);
+}
+
+int check_view_col_up(int *view, int txt[4][4], int pos)
+{
+    int num_view;
+    int num_max;
+    int i;
+
+    num_view = 0;
+    num_max = 0;
+    i = 0;
+    if(pos / 4 == 3)
+    {
+    while(i < 4)
+    {
+        if(txt[i][pos % 4] > num_max)
+        {
+            num_max = txt[i][pos % 4];
+            num_view++;
+        }
+        i++;
+    }
+    if(view[0 + (pos % 4)] != num_view)
+    {
+        return (0);
+    }
+    }
+    return (1);
+}
+
+int check_view_col_down(int *view, int txt[4][4], int pos)
+{
+    int num_view;
+    int num_max;
+    int i;
+
+    num_view = 0;
+    num_max = 0;
+    i = 3;
+    if(pos / 4 == 3)
+    {
+    while(i >= 0)
+    {
+        if(txt[i][pos % 4] > num_max)
+        {
+            num_max = txt[i][pos % 4];
+            num_view++;
+        }
+        i--;
+    }
+    if(view[4 + (pos % 4)] != num_view)
+    {
+        return (0);
+    }
+    }
+    return (1);
+    
+}
+
+int check_view_col_left(int *view, int txt[4][4], int pos)
+{
+    int num_view;
+    int num_max;
+    int i;
+
+    num_view = 0;
+    num_max = 0;
+    i = 0;
+    if(pos % 4 == 3)
+    {
+    while(i < 4)
+    {
+        if(txt[pos / 4][i] > num_max)
+        {
+            num_max = txt[pos / 4][i];
+            num_view++;
+        }
+        i++;
+    }
+    if(view[8 + (pos / 4)] != num_view)
+    {
+        return (0);
+    }
+    }
+    return (1);
+}
+
+int check_view_col_right(int *view, int txt[4][4], int pos)
+{
+    int num_view;
+    int num_max;
+    int i;
+
+    num_view = 0;
+    num_max = 0;
+    i = 4;
+    if(pos % 4 == 3)
+    {
+        while(--i >= 0)
+        {
+        if(txt[pos / 4][i] > num_max)
+        {
+            num_max = txt[pos / 4][i];
+            num_view++;
+        }
+
+        }
+
+    if(view[12 + (pos / 4)] != num_view)
+    {
+        return (0);
+    }
+    }
+    return (1);
+}
